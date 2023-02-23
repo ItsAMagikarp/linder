@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Signup</title>
-        <link rel="stylesheet" href="">
+        <title>Registration</title>
+        <link rel="stylesheet" href="signup.css">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
@@ -19,10 +20,55 @@
                     <img src="#" alt="logo">
                 </div>
             </header>
-            <div id="signin" >
-                <h1>Linder</h1>
-                <input type="text" id="email" name="email">
-
+            <div class="signup">
+                <h1>Register</h1>
+                <form action="#">
+                    <div class="user_details">
+                        <div class="input_box">
+                            <p>First Name</p> 
+                            <input type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Last Name</p> 
+                            <input type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Email</p> 
+                            <input type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Phone Number</p> 
+                            <input type="text" placeholder="Enter Here" required>                           
+                        </div>
+                        <div class="input_box">
+                            <p>Password</p>                         
+                            <input type="password" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Confirm Password</p>                         
+                            <input type="password" placeholder="Confirm Password Here" required>       
+                        </div>
+                    </div>
+                    <div class="gender_details">
+                        <span class="gender_title">Gender</span>
+                        <div class="category">
+                            <label for="">
+                                <span class="dot one"></span>
+                                <span class="gender">Male</span>
+                            </label>
+                            <label for="">
+                                <span class="dot one"></span>
+                                <span class="gender">Female</span>
+                            </label>
+                            <label for="">
+                                <span class="dot one"></span>
+                                <span class="gender">Prefer not to say</span>                            
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Register">
+                    </div>
+                </form>
             </div>
-    </body>
 </html>
