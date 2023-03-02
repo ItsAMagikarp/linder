@@ -28,6 +28,13 @@ body {
     margin-right: auto;
 }
 
+#logo{
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    display: block;
+}
+
 #nav ul li a{
     color: rgb(237, 237, 237);
     text-decoration: none;
