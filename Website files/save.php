@@ -24,6 +24,6 @@
         $stmt->execute();
         echo "registration Successful...";
         $stmt->close();
-        $conn->close():
+        $conn->close();
     }
 ?>
