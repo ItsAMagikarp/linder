@@ -22,27 +22,27 @@
             </header>
             <div class="signup">
                 <h1>Register</h1>
-                <form action="#">
+                <form name="register" action="save.php" method="POST">
                     <div class="user_details">
                         <div class="input_box">
                             <p>First Name</p> 
-                            <input type="text" placeholder="Enter Here" required>       
+                            <input id="Fname" name="Fname" type="text" placeholder="Enter Here" required>       
                         </div>
                         <div class="input_box">
                             <p>Last Name</p> 
-                            <input type="text" placeholder="Enter Here" required>       
+                            <input id="Lname" name="Lname"type="text" placeholder="Enter Here" required>       
                         </div>
                         <div class="input_box">
                             <p>Email</p> 
-                            <input type="text" placeholder="Enter Here" required>       
+                            <input id="email" name="email" type="text" placeholder="Enter Here" required>       
                         </div>
                         <div class="input_box">
                             <p>Phone Number</p> 
-                            <input type="text" placeholder="Enter Here" required>                           
+                            <input id="pNumber" name="pNumber" type="text" placeholder="Enter Here" required>                           
                         </div>
                         <div class="input_box">
                             <p>Password</p>                         
-                            <input type="password" placeholder="Enter Here" required>       
+                            <input id="password" name="password" type="password" placeholder="Enter Here" required>       
                         </div>
                         <div class="input_box">
                             <p>Confirm Password</p>                         
@@ -50,9 +50,9 @@
                         </div>
                     </div>
                     <div class="gender_details">
-                        <input type="radio" name="gender" id="dot-1">
-                        <input type="radio" name="gender" id="dot-2">
-                        <input type="radio" name="gender" id="dot-3">
+                        <input type="radio" name="gender" id="dot-1" value="m">
+                        <input type="radio" name="gender" id="dot-2" value="f">
+                        <input type="radio" name="gender" id="dot-3" value="o">
                         <span class="gender_title">Gender</span>
                         <div class="category">
                             <label for="dot-1">
