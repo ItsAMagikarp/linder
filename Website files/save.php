@@ -13,4 +13,17 @@
     fwrite($data, "$Fname, $Lname, $email, $number, $pass\n");
     echo "<h1>The data has been submitted</h1>";
     fclose($data);
+
+    $conn = new mysqli('localhost', 'root','','test')
+    if($conn->connect_error){
+        die('Connection Failed:'.$conn->connect_error);
+    }else{
+        $stmt = $conn->preprare("insert into registration(Fname, Lname, email, number, pass, gender)
+            value(?, ?, ?, ?, ?, ?) ");
+        $stmt->bind_param("sssiss", $Fname, $Lname, $email, $number, $pass, $gender);
+        $stmt->execute();
+        echo "registration Successful...";
+        $stmt->close();
+        $conn->close():
+    }
 ?>
