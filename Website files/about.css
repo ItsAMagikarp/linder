@@ -115,70 +115,11 @@ header {
     margin-left: 20px;
 }
 
-.feature{
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    background-color: rgb(186, 185, 185);
-    height: 600px;
-    margin-top: 50px;
-}
-
-.snaps-inline{
-    scroll-snap-type: inline mandatory;
-    scroll-padding-inline: 10px;
-}
-
-.snaps-inline > * {
-    scroll-snap-align: start;
-}
-
-#card{
-    padding: 10px;
-}
-
-#card h1{
-    font-size: 50px;
-    padding-top: 110px;
-    padding-left: 50px;
-    color: rgb(118, 43, 43);
-    font-family: 'Bebas Neue', cursive;
-}
-
-#card p{
-    width: 50%;
-    font-size: 30px;
-    padding-left: 50px;
-    font-family: 'Teko', sans-serif;
-}
-
-#card img{
-    width: 30%;
-    float: right;
-    height: 550px;
-}
-
-#start{
-    height: 648px;
-    margin-top: 50px;
-    background-image: url(img/start1.jpg);
-    background-size: contain;
+#background{
+    background-size: cover;
+    width: 80px;
+    height: 100px;
     display: block;
-}
-
-#start h1{
-    font-family:monospace;
-    font-size: 50px;
-    text-align: center;
-    font-weight: 100;
-    color: rgb(194, 176, 76);
-    padding-top: 20px;
-}
-
-#start .button{
-    margin-top: 80px;
 }
 
 footer{
