@@ -97,7 +97,7 @@ header {
     display: block;
     background-image: url("img/2.jpg");
     background-size: cover;
-    height: 1700px;
+    height: 3000px;
 }
 
 #about h1{
@@ -118,7 +118,7 @@ header {
 #background{
     background-size: cover;
     width: 400px;
-    height: 400px;
+    height: 500px;
     display: block;
 }
 
