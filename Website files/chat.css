@@ -42,7 +42,7 @@
 .time-right {
   float: right;
   color: rgb(5, 5, 5);
-  font-size: 7px;
+  font-size: 12px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -50,6 +50,6 @@
 .time-left {
   float: left;
   color: rgb(5, 5, 5);
-  font-size: 7px;
+  font-size: 12px;
   font-family: 'Montserrat', sans-serif;
 }
