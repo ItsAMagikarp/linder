@@ -39,30 +39,33 @@
             padding: 20px;
           }
           </style>
-          
+          <script>
+            var dt = new Date();
+            document.getElementById('date-time').innerHTML=dt;
+          </script>
     </head>
     <body>
         <header>
 <div class="container">
   <p>Placeholder Message, need to allow users to input their text into these boxes but for now, this is the interface. Stretching out this message to show what it looks like. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-  <span class="time-right">Placeholder Time</span>
+  <span id="date-time" class="time-right"></span>
 </div>
 
 <div class="container darker">
   <p>Placeholder Message</p>
-  <span class="time-left">12:43</span>
+  <span id="date-time" class="time-left">12:43</span>
 </div>
 
 <div class="container">
   <form name="Messages">
     <input type="text" name="name" placeholder = "Type here...">
   </form>
-  <span class="time-right">Make the time automatic.</span>
+  <span id="date-time" class="time-right"></span>
 </div>
 
 <div class="container darker">
   <p>Placeholder Message</p>
-  <span class="time-left">Placeholder Time</span>
+  <span id="date-time" class="time-left"></span>
 </div>
 </header>
 </body>
