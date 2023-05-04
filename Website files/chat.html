@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <title>Linder</title>
         <link rel="stylesheet" href="chat.css">
-        <script src="script.js"></script>
+        <script src="script.js">
+          var dt = new Date();
+            document.getElementById('date-time').innerHTML=dt;
+        </script>
         <style>
           body {font-family: Arial, Helvetica, sans-serif;}
           * {box-sizing: border-box;}
@@ -39,21 +42,17 @@
             padding: 20px;
           }
           </style>
-          <script>
-            var dt = new Date();
-            document.getElementById('date-time').innerHTML=dt;
-          </script>
     </head>
     <body>
         <header>
 <div class="container">
-  <p>Placeholder Message, need to allow users to input their text into these boxes but for now, this is the interface. Stretching out this message to show what it looks like. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+  <p>Placeholder Message, need to allow users to input their text into these boxes but for now, this is the interface.</p>
   <span id="date-time" class="time-right"></span>
 </div>
 
 <div class="container darker">
   <p>Placeholder Message</p>
-  <span id="date-time" class="time-left">12:43</span>
+  <p>Time: <span id="date-time" class="time-left"></span></p>
 </div>
 
 <div class="container">
