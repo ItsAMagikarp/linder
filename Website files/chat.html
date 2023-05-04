@@ -4,10 +4,8 @@
         <meta charset="utf-8">
         <title>Linder</title>
         <link rel="stylesheet" href="chat.css">
-        <script>
-          var dt = new Date();
-          document.getElementById('date-time').innerHTML=dt;
-        </script>
+        <script src="script.js"></script>
+
         <style>
           body {font-family: Arial, Helvetica, sans-serif;}
           * {box-sizing: border-box;}
@@ -46,13 +44,24 @@
     <body>
         <header>
 <div class="container">
-  <p>Placeholder Message, need to allow users to input their text into these boxes but for now, this is the interface.</p>
+  <form name="Messages"></form>
+  <input type="text" name="name" placeholder = "Type here...">
   <span id="date-time" class="time-right"></span>
+  <script>
+    var dt = new Date();
+    document.getElementById('date-time').innerHTML=dt;
+  </script>
 </div>
 
 <div class="container darker">
+  <form name="Messages"></form>
+  <input type="text" name="name" placeholder = "Type here...">
   <p>Placeholder Message</p>
   <p>Time: <span id="date-time" class="time-left"></span></p>
+  <script>
+    var dt = new Date();
+    document.getElementById('date-time').innerHTML=dt;
+  </script>
 </div>
 
 <div class="container">
@@ -60,11 +69,21 @@
     <input type="text" name="name" placeholder = "Type here...">
   </form>
   <span id="date-time" class="time-right"></span>
+  <script>
+    var dt = new Date();
+    document.getElementById('date-time').innerHTML=dt;
+  </script>
 </div>
 
 <div class="container darker">
+  <form name="Messages"></form>
+  <input type="text" name="name" placeholder = "Type here...">
   <p>Placeholder Message</p>
   <span id="date-time" class="time-left"></span>
+  <script>
+    var dt = new Date();
+    document.getElementById('date-time').innerHTML=dt;
+  </script>
 </div>
 </header>
 </body>
