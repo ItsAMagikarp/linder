@@ -1,0 +1,490 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Linder</title>
+    <script src="main.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #board {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: rgb(245, 247, 250);
+        }
+
+        .card {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 1%;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transform: translateX(-50%) translateY(-50%) scale(1.5);
+            transform-style: preserve-3d;
+            background-size: contain;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .card .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            background-image: url('');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card .front {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card.flipped .front {
+            transform: rotateY(-180deg);
+        }
+
+        .card.flipped .back {
+            transform: rotateY(0deg);
+        }
+
+        #nav ul {
+        list-style-type: none;
+        text-align: center;
+        float: right;
+        }
+
+        #nav ul li{
+            display: inline-block;
+            padding-top: 0px;
+            padding-right: 20px;
+        }
+
+        #nav ul li img{
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #logo{
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+            display: block;
+        }
+
+        #nav ul li a{
+            color: rgb(237, 237, 237);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(32, 27, 27, 0.489);
+            height: 80px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .swipe-icons {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .swipe-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            font-size: 60px;
+            color: white;
+        }
+
+        .swipe-left {
+            margin-left: 140px;
+        }
+
+        .swipe-right {
+            margin-right: 140px;
+        }
+
+        
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="nav">
+                <ul>
+                    <li><a href="homePage.html">Home<img src="img/home.png" alt="logo"></a></li>
+                    <li><a href="profile.html">Profile<img src="img/profile1.png" alt="logo"></a></li>
+                    <li><a href="contactIn.html">Contact<img src="img/contact.png" alt="logo"></a></li>
+                    <li><a href="#" id="logout">Log Out<img src="img/logout.png" alt="logo"></a></li>
+
+                </ul>
+                <img id="logo" src="img/logo.png" alt="logo">
+            </div>
+        </header>
+    <div id="board"></div>
+    <div class="swipe-icons">
+        <div class="swipe-icon swipe-left">
+            <span>&times;</span>
+        </div>
+        <div class="swipe-icon swipe-right">
+            <span>&#x2713;</span>
+        </div>
+    </div>
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+        import { getStorage, ref, listAll, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyB2H8JFJ6hSLZxfoN2OJrUDYhUBQwzjNaY",
+          authDomain: "linder-e8cfd.firebaseapp.com",
+          projectId: "linder-e8cfd",
+          storageBucket: "linder-e8cfd.appspot.com",
+          messagingSenderId: "980963225738",
+          appId: "1:980963225738:web:b80b474ac36a69d2b0bd73",
+          measurementId: "G-NY0774TKRJ"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        //console.log(app);
+
+        const auth = getAuth();
+
+	  //----- Logout code start	  
+	  document.getElementById("logout").addEventListener("click", function() {
+		  signOut(auth).then(() => {
+			  // Sign-out successful.
+			  console.log('Sign-out successful.');
+			  window.location.replace("index.html");
+			}).catch((error) => {
+			  // An error happened.
+			  console.log('An error happened.');
+			});		  		  
+	  });
+	  //----- End
+      
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script>
+        const imageLinks = [
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fdisc1.png?alt=media&token=7f8cd9c8-f71f-4b2d-8930-32a5349138b9",
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fdisc2.png?alt=media&token=948eb318-8acf-4541-a24c-a493c27c724e",
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fdisc3.png?alt=media&token=6f69b888-1890-414b-b5e2-8797d16d0680"
+        ];
+
+        var picked = []
+        function getRandomImageLink() {
+            if (picked.length === imageLinks.length) {
+                picked = [];
+            }
+            
+            let randomIndex;
+            
+            do {
+                randomIndex = Math.floor(Math.random() * imageLinks.length);
+            } while (picked.includes(randomIndex));
+            
+            picked.push(randomIndex);
+            return imageLinks[randomIndex];
+        }
+
+        const companies = [
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fjob1.png?alt=media&token=b12d320b-f052-4555-bf1b-50d69a18ce71",
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fjob2.png?alt=media&token=600cd673-0a7e-4e0d-b0e3-7e326d7c5f14",
+        "https://firebasestorage.googleapis.com/v0/b/linder-e8cfd.appspot.com/o/images%2Fjob3.png?alt=media&token=d75639ef-8077-476b-bf37-69183d99d4ea"
+        ];
+
+        var picked2 = []
+        function getRandomCompany() {
+            if (picked2.length === companies.length) {
+                picked2 = [];
+            }
+            
+            let randomIndex;
+            
+            do {
+                randomIndex = Math.floor(Math.random() * companies.length);
+            } while (picked2.includes(randomIndex));
+            
+            picked2.push(randomIndex);
+            return companies[randomIndex];
+        }
+
+        class Carousel {
+
+            constructor(element) {
+
+                this.board = element
+
+                // add first two cards programmatically
+                this.push()
+                this.push()
+
+                // handle gestures
+                this.handle()
+
+            }
+
+            handle() {
+                this.cards = this.board.querySelectorAll('.card');
+                this.topCard = this.cards[this.cards.length - 1];
+                this.nextCard = this.cards[this.cards.length - 2];
+
+                if (this.cards.length > 0) {
+                    this.topCard.style.transform =
+                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1.5)';
+
+                    if (this.hammer) this.hammer.destroy();
+                    this.hammer = new Hammer(this.topCard);
+                    this.hammer.add(new Hammer.Tap());
+                    this.hammer.add(new Hammer.Pan({
+                        position: Hammer.position_ALL,
+                        threshold: 0
+                    }));
+
+                    this.hammer.on('tap', (e) => {
+                        this.onTap(e);
+                    });
+                    this.hammer.on('pan', (e) => {
+                        this.onPan(e);
+                    });
+
+                    // Add event listeners for mouse hover and mouse leave
+                    this.topCard.addEventListener('mouseenter', () => {
+                        this.flipCard(this.topCard);
+                    });
+
+                    this.topCard.addEventListener('mouseleave', () => {
+                        this.flipCard(this.topCard);
+                    });
+                }
+            }
+
+
+            onTap(e) {
+
+                // get finger position on top card
+                let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth
+
+                // get rotation degrees around Y axis (+/- 15) based on finger position
+                let rotateY = 15 * (propX < 0.05 ? -1 : 1)
+
+                // enable transform transition
+                this.topCard.style.transition = 'transform 100ms ease-out'
+
+                // apply rotation around Y axis
+                this.topCard.style.transform =
+                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1.5)'
+
+                // wait for transition end
+                setTimeout(() => {
+                    // reset transform properties
+                    this.topCard.style.transform =
+                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1.5)'
+                }, 100)
+
+            }
+
+            
+            onPan(e) {
+
+                if (!this.isPanning) {
+
+                    this.isPanning = true
+
+                    // remove transition properties
+                    this.topCard.style.transition = null
+                    if (this.nextCard) this.nextCard.style.transition = null
+
+                    // get top card coordinates in pixels
+                    let style = window.getComputedStyle(this.topCard)
+                    let mx = style.transform.match(/^matrix\((.+)\)$/)
+                    this.startPosX = mx ? parseFloat(mx[1].split(', ')[4]) : 0
+                    this.startPosY = mx ? parseFloat(mx[1].split(', ')[5]) : 0
+
+                    // get top card bounds
+                    let bounds = this.topCard.getBoundingClientRect()
+
+                    // get finger position on top card, top (1) or bottom (-1)
+                    this.isDraggingFrom =
+                        (e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1
+
+                }
+
+                // get new coordinates
+                let posX = e.deltaX + this.startPosX
+                let posY = e.deltaY + this.startPosY
+
+                // get ratio between swiped pixels and the axes
+                let propX = e.deltaX / this.board.clientWidth
+                let propY = e.deltaY / this.board.clientHeight
+
+                // get swipe direction, left (-1) or right (1)
+                let dirX = e.deltaX < 0 ? -1 : 1
+
+                // get degrees of rotation, between 0 and +/- 45
+                let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45
+
+                // get scale ratio, between .95 and 1
+                let scale = (95 + (5 * Math.abs(propX))) / 100
+
+                // move and rotate top card
+                this.topCard.style.transform =
+                    'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1.5)'
+
+                // scale up next card
+                if (this.nextCard) this.nextCard.style.transform =
+                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+
+                if (e.isFinal) {
+
+                    this.isPanning = false
+
+                    let successful = false
+
+                    // set back transition properties
+                    this.topCard.style.transition = 'transform 200ms ease-out'
+                    if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
+
+                    // check threshold and movement direction
+                    if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+
+                        successful = true
+                        // get right border position
+                        posX = this.board.clientWidth
+
+                    } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+
+                        successful = true
+                        // get left border position
+                        posX = -(this.board.clientWidth + this.topCard.clientWidth)
+
+                    } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {
+
+                        successful = true
+                        // get top border position
+                        posY = -(this.board.clientHeight + this.topCard.clientHeight)
+
+                    }
+
+                    if (successful) {
+
+                        // throw card in the chosen direction
+                        this.topCard.style.transform =
+                            'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
+
+                        // wait transition end
+                        setTimeout(() => {
+                            // remove swiped card
+                            this.board.removeChild(this.topCard)
+                            // add new card
+                            this.push()
+                            // handle gestures on new top card
+                            this.handle()
+                        }, 200)
+
+                    } else {
+
+                        // reset cards position and size
+                        this.topCard.style.transform =
+                            'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1.5)'
+                        if (this.nextCard) this.nextCard.style.transform =
+                            'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1.5)'
+
+                    }
+
+                }
+
+            }
+
+            flipCard(card) {
+                card.classList.toggle('flipped');
+            }
+
+
+            push() {
+                let card = document.createElement('div');
+                card.classList.add('card');
+
+                let frontSide = document.createElement('div');
+                frontSide.classList.add('front');
+                frontSide.style.backgroundImage = "url('"+ getRandomCompany() + "')";
+
+                let backSide = document.createElement('div');
+                backSide.classList.add('back');
+                backSide.style.backgroundImage = "url('" + getRandomImageLink() + "')";
+
+                card.appendChild(frontSide);
+                card.appendChild(backSide);
+
+                this.board.insertBefore(card, this.board.firstChild);
+            }
+
+
+        }
+
+        let board = document.querySelector('#board')
+
+        let carousel = new Carousel(board)
+    </script>
+    
+</body>
+
+</html>
