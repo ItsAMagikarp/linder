@@ -53,3 +53,50 @@
   font-size: 12px;
   font-family: 'Montserrat', sans-serif;
 }
+
+#nav ul {
+  list-style-type: none;
+  text-align: center;
+  float: right;
+  }
+
+  #nav ul li{
+      display: inline-block;
+      padding-top: 0px;
+      padding-right: 20px;
+  }
+
+  #nav ul li img{
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #logo{
+      background-size: cover;
+      width: 80px;
+      height: 80px;
+      display: block;
+  }
+
+  #nav ul li a{
+      color: rgb(237, 237, 237);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+  }
+
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(32, 27, 27, 0.489);
+      height: 80px;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+  }
