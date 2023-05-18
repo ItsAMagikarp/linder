@@ -53,6 +53,19 @@
         
             <img id="logo" src="img/logo.png" alt="logo">
         </div>
+
+import {initializeApp} from "firebase/app";
+import {getMessaging} from "firebase/messaging";
+
+const firebaseConfig = {
+
+}
+
+const app = initializeApp(firebaseConfig);
+
+const messaging = getMessaging(app);
+
+
 <div class="container">
   <form name="Messages"></form>
   <input type="text" name="name" placeholder = "Type here...">
