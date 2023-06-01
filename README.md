@@ -59,7 +59,7 @@ You can access our website and fill out the contact page for any questions.
 
 
 ## Authors and acknowledgment
-Thanks to Stanley Gian, Brian Tran, Triet Phan, and Issac Phoon
+Thanks to Stanley Gian, Brian Tran, Triet Phan, and Issac Phoon for the creation and development for the website Linder.
 
 
 ## Project status
