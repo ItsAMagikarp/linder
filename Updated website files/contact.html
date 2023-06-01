@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>Linder</title>
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
     </head>
 
     <body>
@@ -66,7 +65,7 @@ input[type=submit]:hover {
 <h3>Contact Form</h3>
 
 <div class="container">
-  <form name="Contact" action="contact.php" method="POST">
+  <form name="Contact" action="submit.html" method="POST">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
@@ -74,7 +73,7 @@ input[type=submit]:hover {
     <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
        <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Your email..">
+    <input type="text" id="email" name="email" placeholder="Your email.." >
 
     </select>
 
@@ -89,5 +88,46 @@ input[type=submit]:hover {
 
         </div>
         
+    
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+      import { getStorage, ref, listAll, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js";
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyB2H8JFJ6hSLZxfoN2OJrUDYhUBQwzjNaY",
+        authDomain: "linder-e8cfd.firebaseapp.com",
+        projectId: "linder-e8cfd",
+        storageBucket: "linder-e8cfd.appspot.com",
+        messagingSenderId: "980963225738",
+        appId: "1:980963225738:web:b80b474ac36a69d2b0bd73",
+        measurementId: "G-NY0774TKRJ"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      //console.log(app);
+
+      const auth = getAuth();
+
+      // Upload
+      var form;
+          var files = [];
+          var reader;
+          document.getElementById('upload').onclick = function(){
+            ImgName = document.getElementById('namebox').value
+            var uploadTask = firebase.storage().ref(form).put(files[0]);
+
+            uploadTask.on('state_Change', function(snapshot){
+                var progress = (snapshot.bytesTranferred / snapshot.totalBytes)*100
+                document.getElementById('UpProgress')
+            });
+          }
+    </script>
     </body>
     </html>
