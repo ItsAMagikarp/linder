@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Registration</title>
         <link rel="stylesheet" href="signup.css">
+        <script src="script.js"></script>
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     </head>
 
@@ -25,28 +26,34 @@
                 <form name="register" method="POST">
                     <div class="user_details">
                         <div class="input_box">
-                            <p>Company Name</p> 
-                            <input id="Cname" name="Cname" type="text" placeholder="Enter Here" required>       
+                            <p>First Name</p> 
+                            <input id="Fname" name="Fname" type="text" placeholder="Enter Here" onblur="validateInput('Fname');" required>       
+                            <span id="FnameError" class="error"></span>
                         </div>
                         <div class="input_box">
-                            <p>Address</p> 
-                            <input id="address" name="address" type="text" placeholder="Enter Here" required>       
+                            <p>Last Name</p> 
+                            <input id="Lname" name="Lname" type="text" placeholder="Enter Here" onblur="validateInput('Lname');" required>       
+                            <span id="LnameError" class="error"></span>
                         </div>
                         <div class="input_box">
                             <p>Email</p> 
-                            <input id="email" name="email" type="text" placeholder="Enter Here" required>       
+                            <input id="email" name="email" type="text" placeholder="Enter Here" onblur="validateInput('email');" required>  
+                            <span id="emailError" class="error"></span>
                         </div>
                         <div class="input_box">
                             <p>Phone Number</p> 
-                            <input id="pNumber" name="pNumber" type="text" placeholder="Enter Here" required>                           
+                            <input id="pNumber" name="pNumber" type="text" placeholder="Enter Here" onblur="validateInput('pNumber');" required>                           
+                            <span id="pNumberError" class="error"></span>
                         </div>
                         <div class="input_box">
                             <p>Password</p>                         
-                            <input id="password" name="password" type="password" placeholder="Enter Here" required>       
+                            <input id="password" name="password" type="password" placeholder="Enter Here" onblur="validateInput('password');" required>       
+                            <span id="passwordError" class="error"></span>
                         </div>
                         <div class="input_box">
                             <p>Confirm Password</p>                         
-                            <input type="password" placeholder="Confirm Password Here" required>       
+                            <input id="confirmPassword" type="password" placeholder="Confirm Password Here" onblur="validateInput('confirmPassword');" required>       
+                            <span id="confirmPasswordError" class="error"></span>
                         </div>
                     </div>
                    
