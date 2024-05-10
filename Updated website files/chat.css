@@ -1,0 +1,102 @@
+.container {
+  border: 5px solid #030303;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  font-size: 25px;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+/* Darker chat container, differentiates between different users and their text */
+.darker {
+  border-color: #030303;
+  background-color: rgb(201, 199, 199);
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: rgb(5, 5, 5);
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: rgb(5, 5, 5);
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#nav ul {
+  list-style-type: none;
+  text-align: center;
+  float: right;
+  }
+
+  #nav ul li{
+      display: inline-block;
+      padding-top: 0px;
+      padding-right: 20px;
+  }
+
+  #nav ul li img{
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #logo{
+      background-size: cover;
+      width: 80px;
+      height: 80px;
+      display: block;
+  }
+
+  #nav ul li a{
+      color: rgb(237, 237, 237);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+  }
+
+  header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(32, 27, 27, 0.489);
+      height: 80px;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+  }

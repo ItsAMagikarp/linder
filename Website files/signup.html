@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Registration</title>
+        <link rel="stylesheet" href="signup.css">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <header>
+            <div id="nav">
+                    <ul>
+                        <li><a href="index.html">Home<img src="img/home.png" alt="logo"></a></li>
+                        <li><a href="About.html">About<img src="img/about.png" alt="logo"></a></li>
+                        <li><a href="login.html">Sign up/Log in<img src="img/logIn.png" alt="logo"></a></li>
+                        <li><a href="Contact.html">Contact<img src="img/contact.png" alt="logo"></a></li>
+                    </ul>
+                
+                    <img src="#" alt="logo">
+                </div>
+            </header>
+            <div class="signup">
+                <h1>Register</h1>
+                <form name="register" method="POST">
+                    <div class="user_details">
+                        <div class="input_box">
+                            <p>First Name</p> 
+                            <input id="Fname" name="Fname" type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Last Name</p> 
+                            <input id="Lname" name="Lname"type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Email</p> 
+                            <input id="email" name="email" type="text" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Phone Number</p> 
+                            <input id="pNumber" name="pNumber" type="text" placeholder="Enter Here" required>                           
+                        </div>
+                        <div class="input_box">
+                            <p>Password</p>                         
+                            <input id="password" name="password" type="password" placeholder="Enter Here" required>       
+                        </div>
+                        <div class="input_box">
+                            <p>Confirm Password</p>                         
+                            <input type="password" placeholder="Confirm Password Here" required>       
+                        </div>
+                    </div>
+                    <div class="gender_details">
+                        <input type="radio" name="gender" id="dot-1" value="m">
+                        <input type="radio" name="gender" id="dot-2" value="f">
+                        <input type="radio" name="gender" id="dot-3" value="o">
+                        <span class="gender_title">Gender</span>
+                        <div class="category">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span class="gender">Male</span>
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span class="gender">Female</span>
+                            </label>
+                            <label for="dot-3">
+                                <span class="dot three"></span>
+                                <span class="gender">Prefer not to say</span>                            
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button" id="register" name="register">
+                        <input type="button" value="Register">
+                    </div>
+                </form>
+            </div>
+    </body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyB2H8JFJ6hSLZxfoN2OJrUDYhUBQwzjNaY",
+          authDomain: "linder-e8cfd.firebaseapp.com",
+          projectId: "linder-e8cfd",
+          storageBucket: "linder-e8cfd.appspot.com",
+          messagingSenderId: "980963225738",
+          appId: "1:980963225738:web:b80b474ac36a69d2b0bd73",
+          measurementId: "G-NY0774TKRJ"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        //console.log(app);
+
+        const auth = getAuth();
+
+        //----- New Registration code start	  
+	  document.getElementById("register").addEventListener("click", function() {
+		  var email =  document.getElementById("email").value;
+		  var password = document.getElementById("password").value;
+		  //For new registration
+		  createUserWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert("Registration successfully!!");
+            window.location.replace("login.html");
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    // ..
+		    console.log(errorMessage);
+		    alert(error);
+		  });		  		  
+	  });
+	  //----- End
+
+      </script>
+</html>
